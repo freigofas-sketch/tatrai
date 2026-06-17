@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaunas – Aukštieji Tatrai · Šeimos kelionė 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f1efe7;
+    --card:#fbfaf4;
+    --ink:#222a24;
+    --spruce:#2a3a30;
+    --teal:#1d7a72;
+    --teal-deep:#13564f;
+    --slate:#5b665f;
+    --line:#d9d4c6;
+    --shadow:0 1px 2px rgba(34,42,36,.05),0 8px 24px rgba(34,42,36,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:"Spectral",Georgia,serif;font-weight:600;line-height:1.18;letter-spacing:-.01em}
+  p{margin:.55em 0}
+  a{color:var(--teal-deep)}
+  .eyebrow{
+    font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--teal);margin:0 0 .35em
+  }
+
+  /* HERO */
+  .hero{background:var(--spruce);color:#eef0e9;padding:54px 0 46px;position:relative;overflow:hidden}
+  .hero::after{
+    content:"";position:absolute;inset:auto 0 0 0;height:5px;
+    background:linear-gradient(90deg,var(--teal) 0%, #3aa79c 50%, var(--teal) 100%);
+  }
+  .hero .eyebrow{color:#7fc8bf}
+  .hero h1{font-size:40px;margin:.1em 0 .15em;color:#fff}
+  .hero .sub{font-family:"Spectral",serif;font-style:italic;font-size:19px;color:#cdd6cd;margin:.2em 0 1.1em;max-width:38ch}
+  .dates{font-size:14px;letter-spacing:.02em;color:#aebcb1;font-weight:500}
+  .route{
+    margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+    font-size:13.5px;color:#bcc8bd;line-height:1.7
+  }
+  .route b{color:#eef0e9;font-weight:600}
+
+  /* DAY CHIPS NAV */
+  nav.chips{
+    position:sticky;top:0;z-index:20;background:rgba(241,239,231,.94);
+    backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);
+  }
+  .chips-row{display:flex;gap:8px;overflow-x:auto;padding:11px 20px;max-width:760px;margin:0 auto;-webkit-overflow-scrolling:touch}
+  .chips-row::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-decoration:none;
+    color:var(--slate);background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;white-space:nowrap
+  }
+  .chip:hover{border-color:var(--teal);color:var(--teal-deep)}
+
+  section{padding:30px 0}
+  section h2.sec{font-size:24px;margin:0 0 .15em}
+  .sec-lead{color:var(--slate);max-width:60ch;margin:0 0 1.1em}
+  hr.div{border:0;border-top:1px solid var(--line);margin:0}
+
+  /* CONCEPT BULLETS */
+  ul.ticks{list-style:none;margin:1em 0;padding:0}
+  ul.ticks li{position:relative;padding:0 0 0 26px;margin:.5em 0}
+  ul.ticks li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--teal);transform:rotate(45deg)}
+
+  /* CALLOUT */
+  .callout{
+    background:#e8f1ef;border:1px solid #bfe0da;border-left:4px solid var(--teal);
+    border-radius:12px;padding:16px 18px;margin:18px 0
+  }
+  .callout h3{font-size:16px;margin:0 0 .3em;font-family:"Inter",sans-serif;font-weight:700;letter-spacing:.01em}
+  .callout p{margin:.4em 0;font-size:15.5px}
+
+  /* DAYS / ROUTE LINE */
+  .days{position:relative;margin-top:6px}
+  .days::before{content:"";position:absolute;left:19px;top:18px;bottom:18px;width:2px;background:var(--line)}
+  .day{position:relative;padding:0 0 26px 58px}
+  .stage{
+    position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;
+    background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:"Spectral",serif;font-weight:600;font-size:18px;box-shadow:0 0 0 5px var(--paper)
+  }
+  .day-card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px 18px 6px;margin-top:2px}
+  .day h2{font-size:21px;margin:.15em 0 .1em}
+  .overnight{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--teal-deep);margin:.1em 0 .2em}
+  .drive-logic{font-size:14.5px;color:var(--slate);margin:.3em 0 .7em;padding-bottom:.7em;border-bottom:1px dashed var(--line)}
+  .blk{margin:.85em 0}
+  .blk h3{font-size:13px;font-family:"Inter",sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin:0 0 .25em}
+  .blk p{margin:.25em 0;font-size:15.5px}
+  ol.steps{margin:.3em 0;padding-left:1.15em}
+  ol.steps li{margin:.32em 0;font-size:15.5px}
+  .time{font-size:14.5px;color:var(--ink);background:#eef1ec;border-radius:8px;padding:8px 11px;margin:.3em 0}
+  .tag{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--teal-deep);background:#dcebe8;border-radius:6px;padding:2px 8px;margin:0 4px 4px 0}
+
+  /* HIKES */
+  .hike{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;margin:14px 0}
+  .hike h3{font-size:18px;margin:0 0 .35em}
+  .hike .best{color:var(--teal);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-family:"Inter",sans-serif;display:block;margin-bottom:2px}
+  dl.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:.4em 0 .2em;font-size:14.5px}
+  dl.facts dt{color:var(--slate);font-weight:600}
+  dl.facts dd{margin:0}
+  .backup{font-size:14.5px;color:var(--slate);border-top:1px dashed var(--line);margin-top:.7em;padding-top:.6em}
+
+  /* TWO-COL LISTS */
+  .region{margin:14px 0}
+  .region h3{font-size:16px;margin:0 0 .2em;color:var(--teal-deep)}
+  .region ul{margin:.3em 0;padding-left:1.1em}
+  .region li{margin:.3em 0;font-size:15.5px}
+
+  /* QUICK REF */
+  .qr{background:var(--spruce);color:#e7eae5;border-radius:14px;padding:20px 20px 8px}
+  .qr h2{color:#fff}
+  .qr .qday{border-top:1px solid rgba(255,255,255,.13);padding:12px 0}
+  .qr .qday:first-of-type{border-top:0}
+  .qr .qd-h{font-weight:700;color:#8fd2c8;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+  .qr p{font-size:15px;margin:.25em 0;color:#dde2dc}
+
+  /* LINKS */
+  .links li{margin:.45em 0;font-size:15px;word-break:break-word}
+  .note{font-size:13.5px;color:var(--slate)}
+
+  footer{background:#e9e6dc;border-top:1px solid var(--line);margin-top:10px}
+  footer .wrap{padding:22px 20px}
+  footer p{font-size:13.5px;color:var(--slate);margin:.4em 0}
+
+  @media (max-width:480px){
+    body{font-size:16.5px}
+    .hero h1{font-size:33px}
+    .hero{padding:42px 0 38px}
+    .day{padding-left:52px}
+    .days::before{left:17px}
+    .stage{width:36px;height:36px;font-size:16px}
+  }
+
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  /* PRINT → PDF (lietuviškos raidės renderinamos teisingai) */
+  @media print{
+    body{background:#fff;color:#000;font-size:11pt}
+    nav.chips{display:none}
+    .hero{background:#fff;color:#000;border-bottom:2px solid #000}
+    .hero h1,.hero .sub,.dates,.route,.route b,.hero .eyebrow{color:#000}
+    .hero::after{display:none}
+    .day-card,.hike,.callout,.qr{box-shadow:none}
+    .qr{background:#fff;color:#000;border:1px solid #000}
+    .qr h2,.qr .qd-h,.qr p{color:#000}
+    .stage{background:#000;box-shadow:0 0 0 4px #fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .day,.hike,.day-card{break-inside:avoid;page-break-inside:avoid}
+    section{padding:14px 0}
+    a{color:#000;text-decoration:underline}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Šeimos kelionė automobiliu</p>
+    <h1>Kaunas – Aukštieji Tatrai</h1>
+    <p class="sub">Renesansinis upės miestelis, mediniai Podhalės kaimai, Pieninų gūbriai ir Tatrų ežerai</p>
+    <p class="dates">2026 m. birželio 19–24 d. · penktadienis–trečiadienis</p>
+    <p class="route">
+      <b>Maršrutas:</b> Kaunas → Varšuva → Kazimierz Dolny → Chochołów → Białka Tatrzańska → Pieninai → Tatranská Lomnica → Kaunas
+    </p>
+  </div>
+</header>
+
+<nav class="chips" aria-label="Dienos">
+  <div class="chips-row">
+    <a class="chip" href="#d1">Pn · Kazimierz</a>
+    <a class="chip" href="#d2">Št · Chochołów</a>
+    <a class="chip" href="#d3">Sk · Pieninai</a>
+    <a class="chip" href="#d4">Pr · Téryho</a>
+    <a class="chip" href="#d5">An · Velická</a>
+    <a class="chip" href="#d6">Tr · Namo</a>
+    <a class="chip" href="#zygiai">Žygiai</a>
+    <a class="chip" href="#santrauka">Santrauka</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- KONCEPCIJA -->
+  <section id="ideja">
+    <p class="eyebrow">Kelionės idėja</p>
+    <p class="sec-lead">Kilpa iš Lietuvos į Karpatus, sudėliota taip, kad kiekvieną dieną liktų vienas įsimintinas dalykas. Nuotaika sąmoningai keičiasi: renesansinis upės miestelis, paskui medinis kalnų kaimas ir laukinė tarpeklio upė, tada panoraminis Pieninų gūbrys, ir dvi dienos Aukštųjų Tatrų ežerų bei krioklių.</p>
+    <ul class="ticks">
+      <li>Autentiškos, fotogeniškos vietos vietoj garsių, bet perpildytų.</li>
+      <li>Vaizdingi trumpi ir vidutinio sunkumo žygiai – tarpekliai, gūbriai, ežerai, kriokliai – niekada „Rysų“ lygio.</li>
+      <li>Maži istoriniai miesteliai ir mediniai kaimai, apžiūrimi auksinės valandos šviesoje.</li>
+      <li>Minimaliai muziejų; pagrindinį darbą atlieka gamta.</li>
+      <li>Terminiai baseinai ar lengvas pasivaikščiojimas kaip atsarginis variantas maždaug 20 min atstumu nuo abiejų nakvynės bazių.</li>
+      <li>Ilgiausi pervažiavimai – penktadienį ir trečiadienį.</li>
+    </ul>
+
+    <div class="callout">
+      <h3>Sąžiningai apie tempą</h3>
+      <p>Maršrutas gražus, bet tankus. Keturios iš šešių dienų ilgos: penktadienis (~11 val. su apsipirkimu ir dviem pervažiavimais), šeštadienis (~5 val. kelio plius du pasivaikščiojimai), sekmadienis (didelis žygis kartu su sienos kirtimu) ir trečiadienis – kelionė namo.</p>
+      <p>Jei kas pavargsta, <b>sekmadienį lengviausia sutrumpinti Wysoka žygį</b> (tik Homole tarpeklis arba trumpa kilpa). Pirmadienį galima apsisukti ties Zamkovského trobele.</p>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- DIENOS -->
+  <section id="dienos">
+    <p class="eyebrow">Diena po dienos</p>
+    <div class="days">
+
+      <!-- D1 -->
+      <article class="day" id="d1">
+        <span class="stage">1</span>
+        <div class="day-card">
+          <p class="eyebrow">Penktadienis · birželio 19 d.</p>
+          <h2>Kelionė į pietus — Kazimierz Dolny</h2>
+          <p class="overnight">Nakvynė: Kazimierz Dolny</p>
+          <p class="drive-logic">Kaunas → Varšuva ~400 km (~4 val.). Po apsipirkimo Varšuva → Kazimierz Dolny tik ~140 km (~2–2,5 val.) – trumpesnė vakaro atkarpa ir yra priežastis rinktis Kazimierz. Birželio šviesa trunka iki ~21 val.</p>
+
+          <div class="blk">
+            <h3>Pagrindinis planas</h3>
+            <ol class="steps">
+              <li><b>Varšuvos prekybos centrai</b>, 3–4 val. Grynas apsipirkimas ir pietūs.</li>
+              <li>Toliau į <b>Kazimierz Dolny</b> – kompaktišką renesansinį miestelį prie Vyslos.</li>
+              <li>Vakaras: auksinės valandos kilpa per <b>Rynek</b> (Turgaus aikštę) ir Krakowska gatvę iki Vyslos kranto; jei lieka jėgų – ant <b>Trijų Kryžių kalno</b> (Góra Trzech Krzyży) dėl panoramos.</li>
+              <li>Trumpa gamta: <b>Korzeniowy Dół</b> – lioso tarpeklis (gilus priemolio griovys) su atviromis šaknimis, ~45–60 min.</li>
+            </ol>
+          </div>
+
+          <p class="time"><b>Laikas:</b> ~08:30 išvykimas iš Kauno · ~12:30 Varšuva, apsipirkimas + pietūs · ~16:00 toliau · ~18:30 Kazimierz · vakarinis pasivaikščiojimas su tarpekliu.</p>
+
+          <div class="blk">
+            <h3>Kodėl ypatinga</h3>
+            <p>Aikštė, upė, apžvalgos taškas ir tikras laukinis tarpeklis – viskas viename mažame spindulyje, be didmiesčio minių.</p>
+          </div>
+          <div class="blk">
+            <h3>Maistas</h3>
+            <p><b>Sarzyński</b> (patikimas šeimai – kepykla ir lenkiški patiekalai), <b>Stare Jatki</b> (jaukus, vietietiškas), <b>Zielona Tawerna</b>. Rezervacijos paprastai nereikia.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- D2 -->
+      <article class="day" id="d2">
+        <span class="stage">2</span>
+        <div class="day-card">
+          <p class="eyebrow">Šeštadienis · birželio 20 d.</p>
+          <h2>Medinė Podhalė ir Białkos tarpeklis</h2>
+          <p class="overnight">Nakvynė: Białka Tatrzańska</p>
+          <p class="drive-logic">Ilgiausia kelio diena. Kazimierz → Chochołów ~4,5–5 val., aplenkiant Krokuvos centrą (S7 / aplinkkelis). Planuokite kaip pervažiavimo dieną su dviem trumpais kokybiškais pasivaikščiojimais pabaigoje.</p>
+
+          <div class="blk">
+            <h3>Pagrindinis planas</h3>
+            <ol class="steps">
+              <li>(Nebūtina) atsisveikinimo valanda Kazimierze; išvykimas iki ~08:30.</li>
+              <li>Ilgas važiavimas, vienas sustojimas kavai, be tarpinių apžiūrų.</li>
+              <li><b>Chochołów medinis kaimas</b> (~14:00–16:00) – „Podhalės perlas“, gyva gatvė su 100+ saugomų medinių namų. Vėlyvi pietūs karčmoje.</li>
+              <li><b>Przełom Białki pod Krempachami</b> – laukinis rezervatas, kur Białka vingiuoja per žvyrą tarp <b>Obłazowa</b> ir <b>Kramnica</b> uolų. Mokama stovėjimo aikštelė (~10 PLN), ~45–60 min.</li>
+              <li>~10–15 min iki <b>Białka Tatrzańska</b>; vakarienė, nebūtinai terminiai baseinai.</li>
+            </ol>
+          </div>
+
+          <p class="time"><b>Laikas:</b> ~08:30 išvykimas · ~14:00 Chochołów + pietūs · ~17:30 Przełom Białki · ~19:00 Białka, įsikūrimas · vakaras: vakarienė ± Terma Bania.</p>
+
+          <div class="blk">
+            <h3>Kodėl ypatinga</h3>
+            <p>Du skirtingi autentiški Podhalės potyriai – liaudies architektūra ir laukinė upė – vietoj dar vienos pilies. Abu trumpi, tad ilgas kelias nesuryja dienos.</p>
+          </div>
+          <div class="blk">
+            <h3>Maistas</h3>
+            <p>Pirma <b>góralų (kalniečių)</b> vakarienė – oscypek, kwaśnica, placki po zbójnicku – geriausiai Chochółowo apylinkių karčmoje dėl kaimo nuotaikos.</p>
+          </div>
+          <div class="blk">
+            <h3>Atsarginis variantas</h3>
+            <p>Jei kelias užtruko – darykite <b>tik Chochołów</b> ir praleiskite Przełom Białki (tai paskutinis stotelė, nesunku atsisakyti). Arba ilgesnis <b>Terma Bania</b> (34–38 °C, vidaus ir lauko baseinai, čiuožyklos vaikams).</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- D3 -->
+      <article class="day" id="d3">
+        <span class="stage">3</span>
+        <div class="day-card">
+          <p class="eyebrow">Sekmadienis · birželio 21 d.</p>
+          <h2>Wysoka, paskui per sieną į Slovakiją</h2>
+          <p class="overnight">Nakvynė: Tatranská Lomnica</p>
+          <p class="drive-logic">Kilpa į rytus į <b>Pieninus</b> žygiui, paskui per sieną į pietvakarius pro Ždiar. Lenkija ir Slovakija – Šengeno erdvėje, siena paprastai atvira, be patikrų. Białka → Jaworki ~45–60 min.</p>
+
+          <div class="blk">
+            <h3>Pagrindinis planas</h3>
+            <ol class="steps">
+              <li>Iš Białka ~07:15; iki <b>Jaworki</b> (pro Szczawnicą), žygio pradžia prie Homole / Biała Woda aikštelės.</li>
+              <li>Žygis: <b>Homole tarpeklis → Wysoka (1050 m) → Biała Woda kilpa</b> – siauras tarpeklis su mediniais tilteliais, paskui aukščiausia Pieninų viršūnė su panorama, leidžiantis pro kalkakmenio pievas.</li>
+              <li>Vėlyvi pietūs <b>Szczawnicoje</b> (daugiau pasirinkimo nei Jaworki).</li>
+              <li><b>Niedzica pilis (Zamek Dunajec) + Czorsztyno ežeras</b> – fotogeniška pilis virš turkio spalvos užtvankos ežero; ~1–1,5 val., nedaug pastangų, pakeliui.</li>
+              <li>Per sieną; trumpas sustojimas <b>Ždiar</b> kaime – mediniai góralų ūkiai po Belianų Tatrais.</li>
+              <li>Į <b>Tatranská Lomnica</b>; įsikūrimas, vakarienė.</li>
+            </ol>
+          </div>
+
+          <p class="time"><b>Laikas:</b> ~08:15 žygio pradžia (Homole prieš minias) · ~10:15 Wysoka viršūnė · ~13:30 grįžimas, pietūs · ~15:15–16:30 Niedzica / Czorsztyn · ~17:30 Ždiar · ~18:30 Tatranská Lomnica.</p>
+
+          <div class="blk">
+            <h3>Kodėl ypatinga</h3>
+            <p>„Parašo“ Pieninų diena – dramatiškas tarpeklis, tikra viršūnės panorama (kurios dar nematėte, kitaip nei Trzy Korony) ir vaizdinga pilis prie ežero – viskas kartu kaip perėjimas į Slovakiją.</p>
+          </div>
+          <div class="blk">
+            <h3>Apie minias</h3>
+            <p>Homole tarpeklis judriausias – pradėkite ~08:15. Wysoka ir Biała Woda ramesnės.</p>
+          </div>
+          <div class="blk">
+            <h3>Atsarginis variantas — šią dieną verta lengvinti labiausiai</h3>
+            <p><b>Mažiau nuovargio:</b> trumpa Wysoka kilpa pirmyn-atgal pro Homole (~8–10 km, ~3,5–4,5 val.) arba tik <b>Homole tarpeklis</b> (~1–1,5 val.), tada tiesiai į Niedzicą ir Ždiar.</p>
+            <p><b>Audra / lietus:</b> atsisakykite viršūnės – trumpas Biała Woda arba Dunajeco pakrantės pasivaikščiojimas, paskui terminiai baseinai; pilis ir ežeras gražiai atrodo ir debesuotą dieną.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- D4 -->
+      <article class="day" id="d4">
+        <span class="stage">4</span>
+        <div class="day-card">
+          <p class="eyebrow">Pirmadienis · birželio 22 d.</p>
+          <h2>Dramatiškoji diena: Penki Spišo ežerėliai</h2>
+          <p class="overnight">Nakvynė: Tatranská Lomnica</p>
+          <p class="drive-logic">Tatranská Lomnica → <b>Starý Smokovec</b> (~10–15 min), <b>funikulierius į Hrebienok</b> (1285 m). Funikulierius nuima ~250–300 m miško kopimo ir taupo jėgas aukštutiniam slėniui.</p>
+
+          <div class="blk">
+            <h3>Pagrindinis planas</h3>
+            <p><b>Hrebienok → Studený potok kriokliai → Zamkovského chata → Malá Studená dolina → Téryho chata (~2015 m)</b> prie Penkių Spišo ežerėlių, po granito cirko sienomis; grįžimas tuo pačiu keliu.</p>
+            <span class="tag">~13–14 km</span><span class="tag">~900 m aukštis</span><span class="tag">~6–6,5 val.</span><span class="tag">aukštesnis vidutinis (T2–T3)</span>
+            <p style="font-size:15px">Uolėti laipteliai prie viršaus, bet be technikos; lazdos pravers leidžiantis.</p>
+          </div>
+
+          <p class="time"><b>Laikas:</b> ~07:15 išvykimas · ~08:00 funikulierius · ~08:15–10:00 kriokliai → Zamkovského · ~10:00–12:00 iki Téryho · ~12:00–13:00 pietūs ir nuotraukos · ~13:00–15:00 leidimasis · ~15:30 prie automobilio.</p>
+
+          <div class="blk">
+            <h3>Kodėl ypatinga</h3>
+            <p>Kelionės kulminacija – tikras alpinis ežerėlių amfiteatras, visiškai naujas jums, pasiekiamas be sekinančio kopimo. Gražiausi kadrai – kiek aukščiau už trobelę, žvelgiant žemyn į ežerėlius.</p>
+          </div>
+          <div class="blk">
+            <h3>Sauga</h3>
+            <p>Leiskitės žemyn iki ankstyvos popietės (perkūnijos rizika). Vėlyvą birželį prie Téryho kai kuriais metais dar būna sniego lopų – <b>pasitikslinkite vietoje</b>.</p>
+          </div>
+          <div class="blk">
+            <h3>Maistas</h3>
+            <p>Karštas patiekalas <b>Téryho chata</b>, arba sotesni pietūs <b>Zamkovského</b> leidžiantis.</p>
+          </div>
+          <div class="blk">
+            <h3>Atsarginis variantas</h3>
+            <p><b>Trumpas variantas:</b> Hrebienok → kriokliai → Zamkovského chata ir atgal (~7 km, ~400–500 m, 2–3 val.).</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- D5 -->
+      <article class="day" id="d5">
+        <span class="stage">5</span>
+        <div class="day-card">
+          <p class="eyebrow">Antradienis · birželio 23 d.</p>
+          <h2>Krioklių slėnio finalas</h2>
+          <p class="overnight">Nakvynė: Tatranská Lomnica</p>
+          <p class="drive-logic">Trumpas pervažiavimas iki <b>Tatranská Polianka</b> žygio pradžios.</p>
+
+          <div class="blk">
+            <h3>Pagrindinis planas</h3>
+            <p><b>Velická dolina → Velický vodopád → Sliezsky dom prie Velické pleso.</b> Tekantis slėnis su krioklių, <b>Kvetnica</b> („gėlių sodo“) pieva ir ežeru po Gerlachovský štít – aukščiausia Slovakijos viršūne.</p>
+            <span class="tag">~10–11 km pirmyn-atgal</span><span class="tag">~500–600 m</span><span class="tag">~4–5 val.</span><span class="tag">vidutinis</span>
+          </div>
+
+          <p class="time"><b>Laikas:</b> ~08:30 pradžia · krioklys, slėnis, pietūs trobelėje terasoje · popietė – grįžimas, poilsis prieš kelionę namo.</p>
+
+          <div class="blk">
+            <h3>Kodėl ypatinga</h3>
+            <p>Kitokia nuotaika nei pirmadienį – krioklys ir ežeras, ne ežerėlių cirkas – ir pakankamai švelni prieš ilgą kelią namo. Ramesnė už keltuvų maršrutus.</p>
+          </div>
+          <div class="blk">
+            <h3>Maistas</h3>
+            <p>Pietūs <b>Sliezsky dom</b>; įsimintina paskutinė vakarienė Tatranská Lomnica – istorinis <b>Grandhotel Praha</b>. Rezervuokite stalą iš anksto.</p>
+          </div>
+          <div class="blk">
+            <h3>Atsarginis variantas</h3>
+            <p>Nuovargiui: <b>Hrebienok → Studenovodské vodopády</b> kilpa (lengva). Lietui: <b>Belianska ola</b> arba <b>AquaCity Poprad</b>.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- D6 -->
+      <article class="day" id="d6">
+        <span class="stage">6</span>
+        <div class="day-card">
+          <p class="eyebrow">Trečiadienis · birželio 24 d.</p>
+          <h2>Kelionė namo</h2>
+          <p class="overnight">Tatranská Lomnica → Kaunas</p>
+          <p class="drive-logic">~900+ km, ~10–11 val.: pro Krokuvą → Kielce → Varšuva → Kaunas. Vienas geras sustojimas pietums apie Kielce / Radom vidurį, paskui ramiai namo. Šiandien – tik kelias, ne lankymas.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ZYGIAI -->
+  <section id="zygiai">
+    <h2 class="sec">Geriausi žygiai</h2>
+    <p class="sec-lead">Atstumai ir aukščiai apytiksliai; patikrinkite funikulieriaus / keltuvo darbą ir sniego sąlygas žygio rytą.</p>
+
+    <div class="hike">
+      <span class="best">Sekmadienis · geriausias</span>
+      <h3>Wysoka pro Homole tarpeklį ir Biała Woda (Pieninai)</h3>
+      <dl class="facts">
+        <dt>Pradžia</dt><dd>Jaworki, Homole / Biała Woda aikštelė (mokama)</dd>
+        <dt>Atstumas / aukštis</dt><dd>~12–15 km, ~650–750 m</dd>
+        <dt>Trukmė</dt><dd>4,5–5,5 val. gryno ėjimo (5–6 val. su pertraukomis)</dd>
+        <dt>Sudėtingumas</dt><dd>vidutinis+ – be technikos, bet daug kilimų ir leidimų</dd>
+        <dt>Vaizdai</dt><dd>Homole tarpeklis ir tilteliai; Wysoka panorama link Tatrų; kalkakmenio pievos</dd>
+        <dt>Minios</dt><dd>Homole judrus (pradėkite anksti); gūbris ramesnis</dd>
+        <dt>Pradžia</dt><dd>~08:15 iš Jaworki</dd>
+        <dt>Kam tinka</dt><dd>jūsų „Rysams“ pasiruošusiai grupei; ne poilsio žygis</dd>
+      </dl>
+      <p class="backup"><b>Atsarginis:</b> trumpa Wysoka pro Homole pirmyn-atgal (~8–10 km, 3,5–4,5 val.) arba tik Homole tarpeklis (~1–1,5 val.).</p>
+    </div>
+
+    <div class="hike">
+      <span class="best">Pirmadienis · geriausias</span>
+      <h3>Téryho chata / Penki Spišo ežerėliai (pro Hrebienok ir Malá Studená dolina)</h3>
+      <dl class="facts">
+        <dt>Pradžia</dt><dd>Starý Smokovec → funikulierius į Hrebienok</dd>
+        <dt>Atstumas / aukštis</dt><dd>~13–14 km, ~900 m nuo Hrebienok</dd>
+        <dt>Trukmė</dt><dd>~6–6,5 val.</dd>
+        <dt>Sudėtingumas</dt><dd>aukštesnis vidutinis (T2–T3); uolėti laipteliai, be kopimo</dd>
+        <dt>Vaizdai</dt><dd>Studený potok kriokliai, Zamkovského trobelė, Penki Spišo ežerėliai po cirko sienomis</dd>
+        <dt>Minios</dt><dd>judru iki Zamkovského, retėja aukščiau; pirmas funikulierius lenkia</dd>
+        <dt>Pradžia</dt><dd>~08:00 funikulierius</dd>
+        <dt>Kam tinka</dt><dd>grupei stiprią dieną</dd>
+      </dl>
+      <p class="backup"><b>Atsarginis:</b> Hrebienok → kriokliai → Zamkovského chata (~7 km, ~400–500 m, 2–3 val.).</p>
+    </div>
+
+    <div class="hike">
+      <span class="best">Antradienis · geriausias</span>
+      <h3>Velická dolina iki Sliezsky dom + Velický vodopád</h3>
+      <dl class="facts">
+        <dt>Pradžia</dt><dd>Tatranská Polianka</dd>
+        <dt>Atstumas / aukštis</dt><dd>~10–11 km pirmyn-atgal, ~500–600 m (trobelė ~1670 m)</dd>
+        <dt>Trukmė</dt><dd>~4–5 val.</dd>
+        <dt>Sudėtingumas</dt><dd>vidutinis, techniškai lengvas</dd>
+        <dt>Vaizdai</dt><dd>Velický vodopád krioklys, Kvetnica pieva, Velické pleso, Gerlacho vaizdai</dd>
+        <dt>Minios</dt><dd>vidutinės – ramiau nei keltuvų maršrutuose</dd>
+        <dt>Pradžia</dt><dd>~08:30</dd>
+        <dt>Kam tinka</dt><dd>grupei įprastos energijos dieną prieš kelionę namo</dd>
+      </dl>
+      <p class="backup"><b>Atsarginis:</b> Hrebienok + Studenovodské vodopády (funikulierius, lengva, tinka šeimai).</p>
+    </div>
+
+    <div class="hike">
+      <span class="best">Ambicingas variantas · bet kuriai Tatrų dienai</span>
+      <h3>Skalnaté pleso → Veľká Svišťovka → Zelené pleso → Biela voda</h3>
+      <p style="font-size:15px;margin:.2em 0">Keltuvu į viršų, gūbrio perėjimas, leidimasis pro Zelené pleso ir Biela voda. ~16–18 km, ~700–850 m, 6–7 val.; nedidelė ekspozicija gūbryje.</p>
+      <p class="backup"><b>Atkreipkite dėmesį:</b> šis maršrutas <b>kartoja Zelené pleso ir Biela voda</b> (jau matytus) ir baigiasi vienpusiškai – reikia autobuso / taksi atgal arba dviejų automobilių. Rinkitės tik jei norisi vienos didelės gūbrio dienos.</p>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- LIETUS -->
+  <section id="lietus">
+    <h2 class="sec">Lietingos dienos alternatyvos</h2>
+    <div class="region">
+      <h3>Prie Białka Tatrzańska (Št / Sk)</h3>
+      <ul>
+        <li><b>Terma Bania (Białka)</b> – didelis terminis vandens parkas kaime; patogiausias, geras vakaro mirkymas.</li>
+        <li><b>Termy Bukovina</b> – lauko terminiai baseinai su Tatrų vaizdais; vaizdingiausias.</li>
+        <li><b>Chochołowskie Termy</b> – didelis modernus kompleksas vakaruose; tinka pilnai lietingai pusdienei, šalia šeštadienio Chochółowo.</li>
+      </ul>
+    </div>
+    <div class="region">
+      <h3>Prie Tatranská Lomnica (Pr / An)</h3>
+      <ul>
+        <li><b>AquaCity Poprad</b> – didelis vandens parkas ~15–20 min; patikima bet kokiu oru.</li>
+        <li><b>Thermal Park Vrbov</b> – lauko terminiai baseinai ~30 min; ramus, mažiau komercinis.</li>
+        <li><b>Belianska ola (Belianska jaskyňa)</b> – su gidu prie Tatranská Kotlina; geriausias „gamtos viduje“ variantas.</li>
+        <li><b>Spišská Sobota (Poprado senamiestis)</b> – kompaktiška istorinė aikštė, jei priimsite šiek tiek kultūros; gerai dera su AquaCity.</li>
+      </ul>
+    </div>
+    <p class="note">Pasitikrinkite darbo laiką ir rezervacijas dieną prieš – terminiai parkai ir ola keičiasi pagal sezoną.</p>
+  </section>
+
+  <hr class="div">
+
+  <!-- MAISTAS -->
+  <section id="maistas">
+    <h2 class="sec">Maistas</h2>
+    <p class="sec-lead">Bendras siūlas abiejose pusėse – nuoširdus kalnų ir kaimo maistas. Venkite vietų su laminuotu meniu ir kvietėju prie durų.</p>
+    <div class="region"><h3>Kazimierz Dolny (Pn)</h3><ul>
+      <li><b>Sarzyński</b> (kepykla + lenkiški patiekalai, patikimas šeimai), <b>Stare Jatki</b> (vietietiškas), <b>Zielona Tawerna</b> (jaukus).</li></ul></div>
+    <div class="region"><h3>Podhalė — Chochołów / Białka / Bukowina (Št)</h3><ul>
+      <li><b>Góralų karčma</b>: oscypek, kwaśnica, placki po zbójnicku. Chochółowo apylinkių karčma suteikia kaimo nuotaiką.</li></ul></div>
+    <div class="region"><h3>Slovakija — Tatranská Lomnica / Starý Smokovec (Sk–An)</h3><ul>
+      <li><b>Bryndzové halušky</b>, <b>kapustnica</b>, kepta upėtakis; karšti patiekalai trobelėse (Téryho, Zamkovského, Sliezsky dom).</li>
+      <li>Paskutinis vakaras – <b>Grandhotel Praha</b>, atmosferiškas pasimėgavimas. Rezervuokite iš anksto.</li></ul></div>
+  </section>
+
+  <hr class="div">
+
+  <!-- PRAKTIKA -->
+  <section id="praktika">
+    <h2 class="sec">Praktinės pastabos</h2>
+    <ul class="ticks">
+      <li><b>Ilgos kelio dienos:</b> penktadienis, šeštadienis (ilgiausia: Kazimierz → Białka, ~5 val.) ir trečiadienis.</li>
+      <li><b>Ankstyvos pradžios:</b> Homole tarpeklis (sekmadienį ~08:15) ir Hrebienok funikulierius (pirmadienį ~08:00).</li>
+      <li><b>Siena:</b> atviri Šengeno perėjimai; sekmadienio rytas turėtų būti ramus, savaitgaliais gali būti eilių.</li>
+      <li><b>Vėjas ir keltuvai:</b> stiprus vėjas uždaro keltuvus ir funikulierių – turėkite dienos atsarginį planą prieš važiuodami.</li>
+      <li><b>Vinjetės:</b> Slovakijai reikia el. kelių vinjetės (pirkti internetu). Lenkijos greitkeliai automobiliams daugiausia nemokami, su išimtimis.</li>
+      <li><b>Tempas:</b> viena pagrindinė veikla per dieną. Ramybė priklauso nuo to, ar iš tikrųjų naudosite lengvinimo variantus sunkiomis dienomis.</li>
+    </ul>
+  </section>
+
+  <hr class="div">
+
+  <!-- SANTRAUKA -->
+  <section id="santrauka">
+    <div class="qr">
+      <h2 class="sec" style="margin-bottom:.3em">Greita santrauka</h2>
+      <div class="qday"><p class="qd-h">Pn 19 · Varšuva → Kazimierz Dolny</p>
+        <p>Prekybos centrai 3–4 val. · Kazimierz senamiestis (Rynek, Vyslos krantas, Trijų Kryžių kalnas) + Korzeniowy Dół tarpeklis · vakarienė Sarzyński · nakvynė Kazimierz.</p></div>
+      <div class="qday"><p class="qd-h">Št 20 · Kazimierz → Białka (ilgiausia kelio diena)</p>
+        <p>Chochołów medinis kaimas + pietūs karčmoje · Przełom Białki tarpeklis · nebūtinai Terma Bania · góralų vakarienė · nakvynė Białka.</p></div>
+      <div class="qday"><p class="qd-h">Sk 21 · Białka → Tatranská Lomnica (per Pieninus)</p>
+        <p>Wysoka kilpa (Homole–Wysoka–Biała Woda, anksti) · pietūs Szczawnicoje · Niedzica pilis + Czorsztyno ežeras · per sieną · Ždiar · nakvynė Tatranská Lomnica.</p></div>
+      <div class="qday"><p class="qd-h">Pr 22 · Aukštieji Tatrai</p>
+        <p>Funikulierius Hrebienok · Téryho chata / Penki Spišo ežerėliai · pietūs trobelėje · nakvynė Tatranská Lomnica.</p></div>
+      <div class="qday"><p class="qd-h">An 23 · Aukštieji Tatrai</p>
+        <p>Velická dolina + Velický vodopád iki Sliezsky dom · paskutinė vakarienė (Grandhotel Praha) · nakvynė Tatranská Lomnica.</p></div>
+      <div class="qday"><p class="qd-h">Tr 24 · Kelionė namo</p>
+        <p>Tatranská Lomnica → Kaunas (~10–11 val.) · vienas sustojimas vidury kelio.</p></div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- NUORODOS -->
+  <section id="nuorodos">
+    <h2 class="sec">Žemėlapio nuorodos</h2>
+    <p class="sec-lead">Vietovardžiai paruošti įsidėti į savo žemėlapį arba paversti QR kodu (spausdinimui ar šeimos pokalbiui). Patvarios nuorodos iš tyrimo įdėtos žemiau.</p>
+    <div class="region"><h3>Vietovardžiai</h3><ul>
+      <li><b>Pn:</b> Varšuvos prekybos centrai · Kazimierz Dolny Rynek · Góra Trzech Krzyży · Wąwóz Korzeniowy Dół</li>
+      <li><b>Št:</b> Chochołów medinis kaimas · Przełom Białki pod Krempachami (stovėjimas ~49.43263, 20.12917) · Terma Bania, Białka</li>
+      <li><b>Sk:</b> Jaworki Homole / Biała Woda aikštelė · Wysoka viršūnė · Szczawnica · Niedzica pilis (Zamek Dunajec) · Czorsztyno ežeras · Ždiar</li>
+      <li><b>Pr:</b> Starý Smokovec funikulierius · Hrebienok · Zamkovského chata · Téryho chata</li>
+      <li><b>An:</b> Tatranská Polianka pradžia · Velický vodopád · Sliezsky dom / Velické pleso</li>
+    </ul></div>
+    <div class="region links"><h3>Patvarios nuorodos</h3><ul>
+      <li>Terma Bania — <a href="https://www.termabania.pl/en/">termabania.pl/en</a></li>
+      <li>AllTrails – Wysoka kilpa — <a href="https://www.alltrails.com/trail/poland/lesser-poland-malopolskie/jaworki-biala-woda-wysoka-durbaszka">alltrails.com</a></li>
+      <li>AllTrails – Hrebienok–Téryho chata — <a href="https://www.alltrails.com/trail/slovakia/presovsky-kraj/hrebienok-teryho-chata">alltrails.com</a></li>
+      <li>Aukštieji Tatrai – vasaros maršrutai — <a href="https://www.high-tatras.travel/information/summer/suggested-routes/">high-tatras.travel</a></li>
+    </ul></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Prieš išvykstant patikrinti:</b> funikulieriaus / keltuvų darbas (jautrūs vėjui), sniego sąlygos prie Téryho vėlyvą birželį, terminių parkų ir Belianska olos darbo laikas, paskutinės vakarienės rezervacija, Slovakijos kelių vinjetė.</p>
+    <p><b>Išsaugoti kaip PDF:</b> atidarykite naršyklėje → Spausdinti → „Įrašyti kaip PDF“. Lietuviškos raidės (ą, č, ę, ė, į, š, ų, ū, ž) bus rodomos teisingai.</p>
+    <p style="color:#9aa39b">Sudaryta 2026 m. birželis · šeimos kelionės planas</p>
+  </div>
+</footer>
+
+</body>
+</html>
